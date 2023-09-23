@@ -39,7 +39,17 @@ pipeline {
     stage('Deploying React.js container to Kubernetes') {
       steps {
         script {
-          kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
+          def kubeconfigCredential = credentials('kubernetes-configs') // Replace with the actual credential ID
+          def kubeconfigFile = writeFile(file: 'kubeconfig', text: kubeconfigCredential)
+
+          def kubernetesDeployOptions = [
+            kubeconfigFile: kubeconfigFile,
+            configs: 'deployment.yaml,service.yaml',
+            enableConfigSubstitution: true,
+            namespace: 'default',
+          ]
+
+          step([$class: 'KubernetesDeploy', **kubernetesDeployOptions])
         }
       }
     }
