@@ -49,7 +49,7 @@ pipeline {
             namespace: 'default',
           ]
 
-          step([$class: 'KubernetesDeploy', **kubernetesDeployOptions])
+          step([$class: 'KubernetesDeploy', configType: 'FILES', configs: 'kubeconfig', **kubernetesDeployOptions])
         }
       }
     }
