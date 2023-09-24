@@ -37,18 +37,10 @@ pipeline {
       }
     }
 
-      stage('List the files') {
-            steps {
-                script {
-                    sh 'ls'
-                }
-            }
-        }
-
     stage('Deploying React.js container to Kubernetes') {
       steps {
         script {
-            sh 'kubectl apply -f deployment.yaml'
+            bat 'kubectl apply -f deployment.yaml'
         }
       }
     }
