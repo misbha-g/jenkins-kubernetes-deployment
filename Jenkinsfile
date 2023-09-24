@@ -3,7 +3,6 @@ pipeline {
   environment {
     dockerimagename = "devteam18/react-app"
     dockerImage = ""
-    KUBECONFIG = "kubernetes"
   }
 
   agent any
@@ -40,7 +39,7 @@ pipeline {
     stage('Deploying React.js container to Kubernetes') {
       steps {
         script {
-            bat 'kubectl apply -f ./deployment.yaml'
+            kubernetesDeploy(configs: "deployment.yaml", kubeconfigId:"kubernetes")
         }
       }
     }
