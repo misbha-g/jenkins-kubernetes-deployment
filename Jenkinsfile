@@ -3,7 +3,7 @@ pipeline {
   environment {
     dockerimagename = "devteam18/react-app"
     dockerImage = ""
-    KUBECONFIG = "kube-config"
+    KUBECONFIG = "kubernetes"
   }
 
   agent any
