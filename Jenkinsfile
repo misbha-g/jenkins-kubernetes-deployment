@@ -3,7 +3,7 @@ pipeline {
   environment {
     dockerimagename = "devteam18/react-app"
     dockerImage = ""
-    KUBECONFIG = credentials('kubeconfig-credential')
+    KUBECONFIG = credentials('minikube-server-config')
   }
 
   agent any
