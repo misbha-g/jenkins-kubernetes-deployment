@@ -41,6 +41,7 @@ pipeline {
       steps {
         script {
             bat "kubectl apply -f deployment.yaml"
+            bat "kubectl apply -f ingress.yaml"
         }
       }
     }
